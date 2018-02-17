@@ -21,8 +21,8 @@ class App extends React.Component {
     $.ajax({
       url: server,
       method: 'POST',
-      data: {username: term},
-      dataType: 'urlencoded'
+      data: JSON.stringify({username: term}),
+      contentType: 'application/json'
     })
     .done(data => {
       console.log('search response:', data);

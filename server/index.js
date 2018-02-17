@@ -7,7 +7,7 @@ const helpers = require('../helpers/github.js');
 const database = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use( bodyParser.json());
 app.post('/repos', function (req, res) {
 
   console.log('POST RECEIVED: ', req.body.username);
