@@ -7,17 +7,17 @@ const helpers = require('../helpers/github.js');
 const database = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({extended: false}));
 app.post('/repos', function (req, res) {
 
-  console.log('POST RECEIVED: ', req.body);
+  console.log('POST RECEIVED: ', req.body.username);
 
-  helpers.getReposByUsername(req.body)
+  helpers.getReposByUsername(req.body.username)
   .then((result) => {
     return database.save(result);
   }).catch((error) => { console.error('error in saving to database'); })
   .then((result) => {
-    console.log('SAVED')
+    console.log('SAVED');
     res.send('OK');
   });
 });

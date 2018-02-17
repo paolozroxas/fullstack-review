@@ -21,8 +21,8 @@ class App extends React.Component {
     $.ajax({
       url: server,
       method: 'POST',
-      data: term,
-      dataType: 'text'
+      data: {username: term},
+      dataType: 'urlencoded'
     })
     .done(data => {
       console.log('search response:', data);
