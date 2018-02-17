@@ -7,20 +7,15 @@ const helpers = require('../helpers/github.js');
 const database = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
-
 app.use(bodyParser.text());
-
 app.post('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
+
   console.log('POST RECEIVED: ', req.body);
 
   helpers.getReposByUsername(req.body)
   .then((result) => {
     return database.save(result);
-  }).catch((error) => { console.error(error); })
+  }).catch((error) => { console.error('error in saving to database'); })
   .then((result) => {
     console.log('SAVED')
     res.send('OK');
@@ -28,8 +23,6 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
   database.retrieve()
   .then((result) => {
     result.sort((x, y) => {
