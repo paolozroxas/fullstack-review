@@ -1,9 +1,7 @@
 var _ = require('underscore');
 var Promise = require('bluebird');
 
-var MONGODB_URI =
-'mongodb://heroku_1trtcxkk:e4sksm6bul34s9o8khfvgd37j1@ds239988.mlab.com:39988/heroku_1trtcxkk'
-|| 'mongodb://localhost/fetcher';
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/fetcher';
 
 const mongoose = require('mongoose');
 mongoose.connect(MONGODB_URI);

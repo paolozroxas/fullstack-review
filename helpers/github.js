@@ -1,7 +1,7 @@
 const request = require('request');
 const requestPromise = require('request-promise');
 const Promise = require('bluebird');
-const config = require('../config.js');
+const config = process.env.GITHUB_API_KEY || require('../config.js');
 
 let getReposByUsername = (username) => {
   // TODO - Use the request module to request repos for a specific
