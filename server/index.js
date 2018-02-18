@@ -43,10 +43,10 @@ app.get('/repos', function (req, res) {
   })
 });
 
-app.options('/repos', function (req, res) => {
+app.options('/repos', function (req, res) {
   res.set({'Access-Control-Allow-Origin': '*'});
   res.send('OK options');
-})
+});
 
 let port = process.env.PORT || 1128;
 
