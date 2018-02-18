@@ -6,7 +6,8 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon --inspect server/index.js",
-    "mongo-dev": "sudo mongod"
+    "mongo-dev": "sudo mongod",
+    "start": "node server/index.js"
   },
   "author": "Beth Johnson",
   "license": "ISC",
