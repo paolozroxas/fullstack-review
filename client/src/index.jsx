@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
-var server = 'http://localhost:1128/repos';
+var server = location.origin + '/repos' || 'http://localhost:1128/repos';
 
 class App extends React.Component {
   constructor(props) {
