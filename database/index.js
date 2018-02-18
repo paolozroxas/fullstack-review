@@ -48,6 +48,7 @@ let save = (jsonString) => {
     .then((result) => {
       if (result) {
         console.log('repo already exists');
+        return Repo.update({id: repoFields.id}, {storedAt: Date.now()});
       } else {
         console.log('repo not present, will now save');
         let repo = new Repo(repoFields);

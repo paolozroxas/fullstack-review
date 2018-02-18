@@ -32,9 +32,13 @@ td, th {
 }
 
 .loading {
-background-size: cover;
-height: 60px;
+display: block;
+height: 70px;
 width: 70px;
+}
+.loading-img {
+object-fit: none;
+object-position: 50% 50%;
 }
 
 .repo-list {
@@ -47,4 +51,12 @@ width: 70px;
 
 .search-row {
   height: 60px;
+}
+
+.search-field {
+  width: 200px;
+  margin: 10px;
+}
+
+.search-btn {
 }

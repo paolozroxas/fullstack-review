@@ -24,14 +24,13 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-      <h4>Add more repos!</h4>
-      <div className="flex-row search-row">
+      <div className="flex-row">
         Enter a github username:
-        <input value={this.state.terms} onKeyUp={this.onKeyUp.bind(this)}/>
-        <button onClick={this.search.bind(this)}> Add Repos </button>
-        {this.props.loading ? <img className="loading" src="/loading.gif" /> : ''}
-      </div>
+          <input className="search-field" value={this.state.terms} onKeyUp={this.onKeyUp.bind(this)}/>
+          <button className="search-btn" onClick={this.search.bind(this)}> Add Repos </button>
+        <div className="loading">
+          {this.props.loading ? <img className="loading" src="/loading.gif" /> : ''}
+        </div>
       </div>
     )
   }

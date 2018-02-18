@@ -7,7 +7,7 @@ const RepoList = (props) => {
   } else {
     return (
       <div className="flex-col">
-        <h2> Top Repos</h2>
+        <h2>Repo Search Results</h2>
         <table>
           <tbody>
             <tr>
