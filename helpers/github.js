@@ -1,14 +1,17 @@
 const request = require('request');
 const requestPromise = require('request-promise');
 const Promise = require('bluebird');
-const config =  {KEY: process.env.GITHUB_API_KEY} || require('../config.js');
+
+if(process.env.GITHUB_API_KEY) {
+  var config = {TOKEN: process.env.GITHUB_API_KEY};
+} else {
+  var config = require('../config.js');
+}
+
+console.log('config is ', config);
 
 let getReposByUsername = (username) => {
-  // TODO - Use the request module to request repos for a specific
-  // user from the github API
 
-  // The options object has been provided to help you out,
-  // but you'll have to fill in the URL
   var url = `https://api.github.com/users/${username}/repos`
   let options = {
     url: url,

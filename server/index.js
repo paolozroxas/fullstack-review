@@ -16,15 +16,17 @@ app.post('/repos', function (req, res) {
   helpers.getReposByUsername(req.body.username)
   .then((result) => {
     return database.save(result);
-  }).catch((error) => {
-    console.error('error in saving to database');
-    res.statusCode = 500;
-    res.send('error in saving to database');
-   })
+  })
   .then((result) => {
     console.log('SAVED');
     res.send('OK');
-  });
+  })
+  .catch((error) => {
+    console.error('error in saving to database:', error);
+    res.status(500);
+    res.send('error in saving to database');
+  })
+
 });
 
 app.get('/repos', function (req, res) {
