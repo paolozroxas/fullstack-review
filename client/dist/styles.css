@@ -1,0 +1,50 @@
+body {
+  font-family: 'verdana', 'sans-serif';
+  font-size: 16px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+td, th {
+  padding: 5px;
+  flex: display;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loading {
+background-size: cover;
+height: 60px;
+width: 70px;
+}
+
+.repo-list {
+  padding: 20px;
+}
+
+.description {
+  text-align: left;
+}
+
+.search-row {
+  height: 60px;
+}

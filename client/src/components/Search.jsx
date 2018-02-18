@@ -8,23 +8,32 @@ class Search extends React.Component {
     }
   }
 
-  onChange (e) {
+  onKeyUp (e) {
+    if(e.key === 'Enter') {
+      this.search();
+      e.target.value = '';
+    }
     this.setState({
       term: e.target.value
     });
   }
 
   search() {
-    console.log('state term is', this.state.term);
     this.props.onSearch(this.state.term);
   }
 
   render() {
-    return (<div>
+    return (
+      <div>
       <h4>Add more repos!</h4>
-      Enter a github username: <input value={this.state.terms} onChange={this.onChange.bind(this)}/>
-      <button onClick={this.search.bind(this)}> Add Repos </button>
-    </div>)
+      <div className="flex-row search-row">
+        Enter a github username:
+        <input value={this.state.terms} onKeyUp={this.onKeyUp.bind(this)}/>
+        <button onClick={this.search.bind(this)}> Add Repos </button>
+        {this.props.loading ? <img className="loading" src="/loading.gif" /> : ''}
+      </div>
+      </div>
+    )
   }
 }
 

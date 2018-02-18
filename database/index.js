@@ -1,8 +1,12 @@
 var _ = require('underscore');
 var Promise = require('bluebird');
 
+var MONGODB_URI =
+'mongodb://heroku_1trtcxkk:e4sksm6bul34s9o8khfvgd37j1@ds239988.mlab.com:39988/heroku_1trtcxkk'
+|| 'mongodb://localhost/fetcher';
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect(MONGODB_URI);
 var db = mongoose.connection;
 
 db.on('error', () => { console.error('failed to connect to database'); });
@@ -12,8 +16,10 @@ let repoSchema = mongoose.Schema({
   id: Number,
   name: String,
   description: String,
+  stars: Number,
   owner: String,
   ownerAvatarUrl: String,
+  ownerProfileUrl: String,
   url: String,
   updatedAt: Date,
   storedAt: Date
@@ -31,8 +37,10 @@ let save = (jsonString) => {
       id: repoObj.id,
       name: repoObj.name,
       description: repoObj.description,
+      stars: repoObj.stargazers_count,
       owner: repoObj.owner.login,
       ownerAvatarUrl: repoObj.owner.avatar_url,
+      ownerProfileUrl: repoObj.owner.html_url,
       url: repoObj.html_url,
       updatedAt: repoObj.updated_at,
       storedAt: Date.now()

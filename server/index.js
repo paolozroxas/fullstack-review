@@ -8,6 +8,7 @@ const database = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use( bodyParser.json());
+
 app.post('/repos', function (req, res) {
 
   console.log('POST RECEIVED: ', req.body.username);
@@ -15,7 +16,11 @@ app.post('/repos', function (req, res) {
   helpers.getReposByUsername(req.body.username)
   .then((result) => {
     return database.save(result);
-  }).catch((error) => { console.error('error in saving to database'); })
+  }).catch((error) => {
+    console.error('error in saving to database');
+    res.statusCode = 500;
+    res.send('error in saving to database');
+   })
   .then((result) => {
     console.log('SAVED');
     res.send('OK');

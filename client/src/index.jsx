@@ -10,14 +10,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      loading: false
     }
+    this.fetch();
+  }
+
+  componentDidMount() {
 
   }
 
-  search (term) {
-    console.log(`${term} was searched`);
+  fetch() {
+    $.ajax({
+      url: server,
+      method: 'GET',
+    })
+    .done((data) => {
+      this.setState({repos: data});
+      console.log('fetch GET response:', this.state.repos);
+    })
+  }
 
+  search (term) {
+    this.setState({loading: true});
     $.ajax({
       url: server,
       method: 'POST',
@@ -25,15 +40,18 @@ class App extends React.Component {
       contentType: 'application/json'
     })
     .done(data => {
-      console.log('search response:', data);
+      console.log('search POST response:', data);
+      this.fetch();
+      this.setState({loading: false});
     })
+
   }
 
   render () {
-    return (<div>
+    return (<div className="flex-col">
       <h1>Github Fetcher</h1>
+      <Search onSearch={this.search.bind(this)} loading={this.state.loading}/>
       <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
     </div>)
   }
 }
